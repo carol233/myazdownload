@@ -21,7 +21,7 @@ def getFileList(rootDir, pickstr):
     filePath = []
     for parent, dirnames, filenames in os.walk(rootDir):
         for filename in filenames:
-            if filename.endswith(".csv"):
+            if filename.endswith(pickstr):
                 file = os.path.join(parent, filename)
                 filePath.append(file)
     return filePath
@@ -72,7 +72,6 @@ class Analysis:
             except Exception as e:
                 print(e, file)
                 return None
-
 
     def process(self):
         files = getFileList(CSV_FOLDER, ".csv")
