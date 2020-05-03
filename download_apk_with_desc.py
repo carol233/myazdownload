@@ -6,7 +6,7 @@ import pexpect
 API_KEY = "fa08a4ad8d8c9d3c56236d27bd9b99bb83c66c3fd65642d496ea2cbd13d4e8a4"
 
 DOWNLOAD_PATH = "/mnt/fit-Knowledgezoo/yanjie/APK_with_DESC"
-INPUT_DIR = "/home/yanjie/APIRecommendation/Description"
+INPUT_DIR = "/home/yanjie/APIRecommendation/Description_fromGP/"
 CHECK_PATH = "/mnt/fit-Knowledgezoo-vault/vault/apks/"
 passwd = "changeme"
 script_filename = "download_log"

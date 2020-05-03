@@ -3,7 +3,7 @@ import csv
 import os
 import pandas as pd
 
-LATESTCSV = "latest.csv"
+LATESTCSV = "/mnt/fit-Knowledgezoo/Patrick/latest/latest.csv"
 MARKET = "play.google.com"
 CSV_FOLDER = "csv_folder"
 HEADERS = []
