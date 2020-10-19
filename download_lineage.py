@@ -7,7 +7,7 @@ import pexpect
 
 API_KEY = "fa08a4ad8d8c9d3c56236d27bd9b99bb83c66c3fd65642d496ea2cbd13d4e8a4"
 
-DOWNLOAD_PATH = "/home/yanjie/azdownload/APPLineage"
+DOWNLOAD_PATH = "/mnt/fit-Knowledgezoo/yanjie/APPLineage"
 CSV_FOLDER = "/home/yanjie/myazdownload/analyzecsv/csv_folder"
 CHECK_PATH = "/mnt/fit-Knowledgezoo-vault/vault/apks/"
 passwd = "changeme"
@@ -36,8 +36,9 @@ class Analysis:
     def process_one(self, args):
         file = args
         line_count = self.row_count(file)
-        if line_count < 4:
+        if line_count < 7:
             return
+        print(file)
         with open(file, 'r') as f:
             try:
                 df = pd.read_csv(f, header=0)
