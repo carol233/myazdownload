@@ -16,7 +16,7 @@ LATESTCSV = "/data/sdc/yanjie/latest.csv"
 passwd = "changeme"
 script_filename = "download_log"
 fout = open(script_filename, "wb")
-save_list = "SELECTED_1w.txt"
+save_list = "SELECTED_2019.txt"
 
 
 def getFileList(rootDir, pickstr):
@@ -108,7 +108,7 @@ class Analysis:
                     i_month = date.month
                     i_day = date.day
                     i_time = date.time()
-                    if i_year < 2020:
+                    if not i_year == 2019:
                         continue
                     selected_sha256.append(chunk.iloc[i]['sha256'])
                     selected_num += 1

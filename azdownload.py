@@ -86,6 +86,7 @@ class Analysis:
     def start(self):
         self.process()
 
+
 if __name__ == '__main__':
     if not os.path.exists(DOWNLOAD_PATH):
         os.mkdir(DOWNLOAD_PATH)

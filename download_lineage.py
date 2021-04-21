@@ -7,9 +7,9 @@ import pexpect
 
 API_KEY = "fa08a4ad8d8c9d3c56236d27bd9b99bb83c66c3fd65642d496ea2cbd13d4e8a4"
 
-DOWNLOAD_PATH = "/mnt/fit-Knowledgezoo/yanjie/APPLineage"
-CSV_FOLDER = "/home/yanjie/myazdownload/analyzecsv/csv_folder"
-CHECK_PATH = "/mnt/fit-Knowledgezoo-vault/vault/apks/"
+DOWNLOAD_PATH = "/data/sdc/yanjie/APPLineage3w"
+CSV_FOLDER = "/data/sdb/pei/year_folder"
+# CHECK_PATH = "/mnt/fit-Knowledgezoo-vault/vault/apks/"
 passwd = "changeme"
 script_filename = "download_log"
 fout = open(script_filename, "wb")
@@ -36,32 +36,35 @@ class Analysis:
     def process_one(self, args):
         file = args
         line_count = self.row_count(file)
-        if line_count < 7:
-            return
         print(file)
         with open(file, 'r') as f:
             try:
                 df = pd.read_csv(f, header=0)
-                for i in range(len(df)):
+                all_lines_num = len(df)
+                for i in range(all_lines_num):
+
+                    if i != all_lines_num - 2:
+                        continue
+
                     SHA256 = df.iloc[i]['sha256']
                     if os.path.exists(os.path.join(DOWNLOAD_PATH, SHA256 + ".apk")):
                         return
 
-                    if os.path.exists(os.path.join(CHECK_PATH, SHA256 + ".apk")):
-                        exi = os.path.join(CHECK_PATH, SHA256 + ".apk")
-                        now = os.path.join(DOWNLOAD_PATH, SHA256 + ".apk")
-                        CMD = "sudo cp " + exi + " " + now
-                        child = pexpect.spawn(CMD)
-                        child.logfile = fout
-                        index = child.expect(['password', pexpect.EOF, pexpect.TIMEOUT])
-                        if index == 0:
-                            child.sendline(passwd)
-                        elif index == 1:
-                            print("EOF!")
-                        else:
-                            print("Time out!")
-                        child.close(force=True)
-                        return
+                    # if os.path.exists(os.path.join(CHECK_PATH, SHA256 + ".apk")):
+                    #     exi = os.path.join(CHECK_PATH, SHA256 + ".apk")
+                    #     now = os.path.join(DOWNLOAD_PATH, SHA256 + ".apk")
+                    #     CMD = "sudo cp " + exi + " " + now
+                    #     child = pexpect.spawn(CMD)
+                    #     child.logfile = fout
+                    #     index = child.expect(['password', pexpect.EOF, pexpect.TIMEOUT])
+                    #     if index == 0:
+                    #         child.sendline(passwd)
+                    #     elif index == 1:
+                    #         print("EOF!")
+                    #     else:
+                    #         print("Time out!")
+                    #     child.close(force=True)
+                    #     return
 
                     # "sudo curl -O --remote-header-name -G -d apikey=fa08a4ad8d8c9d3c56236d27bd9b99bb83c66c3fd65642d496ea2cbd13d4e8a4 -d sha256=FC6A87C7E9CB83DED48F099B6041B12AC9C6972776E73E23F98FC83F9D90148C https://androzoo.uni.lu/api/download"
                     curl = "sudo curl -O --remote-header-name -G -d apikey=" + API_KEY + " -d sha256=" + SHA256 + " \
@@ -106,6 +109,7 @@ class Analysis:
 
     def start(self):
         self.process()
+
 
 if __name__ == '__main__':
     if not os.path.exists(DOWNLOAD_PATH):
