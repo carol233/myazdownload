@@ -4,9 +4,9 @@ from datetime import datetime
 import os
 import pandas as pd
 
-CSV_FOLDER = "csv_folder"
-MONTH_FOLDER = "month_folder"
-LINE_COUNT_SAVE = "month_line_count.csv"
+CSV_FOLDER = "/data/sdc/yanjie/androzoo/lineages/csv_folder"
+MONTH_FOLDER = "/data/sdc/yanjie/androzoo/lineages/month_folder"
+LINE_COUNT_SAVE = "/data/sdc/yanjie/androzoo/lineages/month_line_count.csv"
 month_line_dict = {}
 
 
@@ -43,7 +43,7 @@ def select_ver(file):
             i_day = date.day
             i_time = date.time()
 
-            if i_year < 2013:
+            if i_year < 2015:
                 continue
 
             if i_year in date_dict:

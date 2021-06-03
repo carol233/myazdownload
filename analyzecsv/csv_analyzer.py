@@ -3,12 +3,12 @@ import csv
 import os
 import pandas as pd
 
-LATESTCSV = "/mnt/fit-Knowledgezoo/Patrick/latest/latest.csv"
+LATESTCSV = "/data/sdc/yanjie/androzoo/latest.csv"
 MARKET = "play.google.com"
-CSV_FOLDER = "csv_folder"
+CSV_FOLDER = "/data/sdc/yanjie/androzoo/lineages/csv_folder"
 HEADERS = []
 line_count = {}
-LINE_COUNT_SAVE = "line_count.csv"
+LINE_COUNT_SAVE = "/data/sdc/yanjie/androzoo/lineages/line_count.csv"
 
 
 def classify(pkg_name, markets, row):
